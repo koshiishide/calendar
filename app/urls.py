@@ -34,4 +34,7 @@ urlpatterns = [
         'month_with_forms/<int:year>/<int:month>/',
         views.MonthWithFormsCalendar.as_view(), name='month_with_forms'
     ),
+    path(
+        'schedule/change/<int:pk>/',
+        views.ScheduleChange.as_view(), name='schedule_change'),
 ]

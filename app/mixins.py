@@ -23,15 +23,15 @@ class BaseCalendarMixin:
     def get_week_names(self):
         """first_weekday(最初に表示される曜日)にあわせて、week_namesをシフトする"""
         week_names = deque(self.week_names)
-        week_names.rotate(-self.first_weekday)  # リスト内の要素を右に1つずつ移動...なんてときは、dequeを使うと中々面白いです
+        week_names.rotate(-self.first_weekday)
         return week_names
 
 
-class MonthCalendarMixin(BaseCalendarMixin):
+class MonthCalendarMixin(BaseCalendarMixin):#月間カレンダー
     """月間カレンダーの機能を提供するMixin"""
 
     def get_previous_month(self, date):
-        """前月を返す"""
+        """前月を返す(date)"""
         if date.month == 1:
             return date.replace(year=date.year-1, month=12, day=1)
         else:

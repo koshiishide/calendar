@@ -102,3 +102,8 @@ class MonthWithFormsCalendar(mixins.MonthWithFormsMixin, generic.View):
             return redirect('app:month_with_forms')
 
         return render(request, self.template_name, context)
+
+class ScheduleChange(generic.UpdateView):
+    model = Schedule
+    form_class = BS4ScheduleForm
+    success_url = '/'

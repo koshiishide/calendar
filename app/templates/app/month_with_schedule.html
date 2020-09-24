@@ -17,6 +17,7 @@
     <a href="{% url 'app:month_with_schedule' month_next.year month_next.month %}">次月</a>
 
     <table class="table">
+        <h2>赤色　　＝　人数足りないアラート</h2>
         <thead>
         <tr>
             {% for w in week_names %}
@@ -28,11 +29,11 @@
         {% for week_day_schedles in month_day_schedules %}
             <tr>
                 {% for day, schedules in week_day_schedles.items %}
-                    {% if now == day %}
-                        <td class="table-success">
-                            {% else %}
-                        <td>
-                    {% endif %}
+                    {%if schedules|length < 2 %}
+                    <td class="table-danger">
+                        {% else %}
+                    <td>
+                    {%endif%}    
 
                 <div>
                     {% if month_current.month != day.month %}
@@ -40,9 +41,10 @@
                     {% else %}
                         {{ day.day }}
                     {% endif %}
-
+                    <br>
+                                  
                     {% for schedule in schedules %}
-                        <p>{{ schedule.summary }}</p>
+                        <p><p><a href="{% url 'app:schedule_change' schedule.pk %}">{{ schedule.summary }}</a></p></p>
                     {% endfor %}
                 </div>
                 </td>
