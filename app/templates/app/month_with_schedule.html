@@ -28,13 +28,15 @@
         <tbody>
         {% for week_day_schedles in month_day_schedules %}
             <tr>
+
                 {% for day, schedules in week_day_schedles.items %}
                     {%if schedules|length < 2 %}
                     <td class="table-danger">
                         {% else %}
-                    <td>
-                    {%endif%}    
-
+                    </td>
+            <td>
+                        {%endif%}    
+ 
                 <div>
                     {% if month_current.month != day.month %}
                         {{ day | date:"m/d" }}
@@ -42,10 +44,19 @@
                         {{ day.day }}
                     {% endif %}
                     <br>
-                                  
+                     <!-- 内容 -->
+                     <table >
+                        <tr>
+                        <td>午前枠</td>
+                        </tr>
+                        <tr>
+                        <td >午後枠</td>
+                        </tr>
+                        </table>
                     {% for schedule in schedules %}
                         <p><p><a href="{% url 'app:schedule_change' schedule.pk %}">{{ schedule.summary }}</a></p></p>
                     {% endfor %}
+                
                 </div>
                 </td>
                 {% endfor %}
