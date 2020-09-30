@@ -37,4 +37,9 @@ urlpatterns = [
     path(
         'schedule/change/<int:pk>/',
         views.ScheduleChange.as_view(), name='schedule_change'),
+
+    path(
+    'schedule/delete/<int:pk>/',
+    views.ScheduleDelete.as_view(), name='schedule_delete'),
+
 ]

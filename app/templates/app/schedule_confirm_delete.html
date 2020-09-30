@@ -1,13 +1,12 @@
 {% extends 'app/base.html' %}
 
+
 {% block content %}
+<h1>本当に消去しますか？</h1>
+{% csrf_token %}
     <form action="" method="POST">
-        {{ form.as_p }}
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary">送信</button>
-        
-        {% csrf_token %}
-        <a href="{% url 'app:schedule_delete' schedule.pk %}" class="btn btn-danger">削除</a>
+        <button type="submit" class="btn btn-danger">消去</button>
     </form>
 {% endblock %}
 

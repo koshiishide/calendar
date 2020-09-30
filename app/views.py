@@ -107,3 +107,8 @@ class ScheduleChange(generic.UpdateView):
     model = Schedule
     form_class = BS4ScheduleForm
     success_url = '/'
+
+class ScheduleDelete(generic.DeleteView):
+    model = Schedule
+    form_class = BS4ScheduleForm
+    success_url = '/month_with_schedule/'
