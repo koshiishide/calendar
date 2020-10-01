@@ -45,14 +45,7 @@
                     {% endif %}
                     <br>
                      <!-- 内容 -->
-                     <table >
-                        <tr>
-                        <td>午前枠</td>
-                        </tr>
-                        <tr>
-                        <td >午後枠</td>
-                        </tr>
-                        </table>
+
                     {% for schedule in schedules %}
                         <p><p><a href="{% url 'app:schedule_change' schedule.pk %}">{{ schedule.summary }}</a></p></p>
                     {% endfor %}
