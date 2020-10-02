@@ -7,8 +7,8 @@ from django import forms
 
 class BaseCalendarMixin:
     """カレンダー関連Mixinの、基底クラス"""
-    first_weekday = 0  # 0は月曜から、1は火曜から。6なら日曜日からになります。お望みなら、継承したビューで指定してください。
-    week_names = ['月', '火', '水', '木', '金', '土', '日']  # これは、月曜日から書くことを想定します。['Mon', 'Tue'...
+    first_weekday = 0
+    week_names = ['月', '火', '水', '木', '金', '土', '日']
 
     def setup_calendar(self):
         """内部カレンダーの設定処理

@@ -55,7 +55,7 @@ class MonthWithScheduleCalendar(mixins.MonthWithScheduleMixin, generic.TemplateV
 
 
 class MyCalendar(mixins.MonthCalendarMixin, mixins.WeekWithScheduleMixin, generic.CreateView):
-    """月間カレンダー、週間カレンダー、スケジュール登録画面のある欲張りビュー"""
+    """月間カレンダー、週間カレンダー、スケジュール登録画面"""
     template_name = 'app/mycalendar.html'
     model = Schedule
     date_field = 'date'
