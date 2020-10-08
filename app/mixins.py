@@ -12,11 +12,6 @@ class BaseCalendarMixin:
 
     def setup_calendar(self):
         """内部カレンダーの設定処理
-
-        calendar.Calendarクラスの機能を利用するため、インスタンス化します。
-        Calendarクラスのmonthdatescalendarメソッドを利用していますが、デフォルトが月曜日からで、
-        火曜日から表示したい(first_weekday=1)、といったケースに対応するためのセットアップ処理です。
-
         """
         self._calendar = calendar.Calendar(self.first_weekday)
 
@@ -87,7 +82,7 @@ class WeekCalendarMixin(BaseCalendarMixin):
             date = datetime.date.today()
 
         for week in self._calendar.monthdatescalendar(date.year, date.month):
-            if date in week:  # 週ごとに取り出され、中身は全てdatetime.date型。該当の日が含まれていれば、それが今回表示すべき週です
+            if date in week:  # 週ごとに取り出され、中身は全てdatetime.date型。該当の日が含まれていれば、それが今回表示
                 return week
 
     def get_week_calendar(self):
