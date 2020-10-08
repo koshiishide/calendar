@@ -18,8 +18,6 @@
 
     <table class="table">
         <h2>赤色　　＝　人数足りないアラート</h2>
-        {% load  test1%}
-
         <thead>
         <tr>
             {% for w in week_names %}
@@ -28,16 +26,15 @@
         </tr>
         </thead>
         <tbody>
+        {% load  test1%}
         {% for week_day_schedles in month_day_schedules %}
             <tr>
 
                 {% for day, schedules in week_day_schedles.items %}
-
-
-                {% with a=test schedules%}
-                    {%if a %}
+                    {%test schedules%}
+                    {%if schedules|length < 2 %}
                     <td class="table-danger">
-
+                        {% else %}
                     </td>
             <td>
                         {%endif%}    

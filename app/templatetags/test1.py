@@ -5,6 +5,10 @@ from django import template
 register = template.Library()
 
 #0,1,2
+@register.simple_tag
+def test2(a):
+    return 0
+
 
 @register.simple_tag
 def test(a):
@@ -19,7 +23,8 @@ def test(a):
             dict[1]+=1
         else:
             continue
-    if (((dict[1])>=2) and (a[2]>=2)):
+    if (((dict[1])>=2) and (dict[2]>=2)):
         return 1
     else:
         return 0
+    return 0
