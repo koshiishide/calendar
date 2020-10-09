@@ -29,16 +29,13 @@
         {% load  test1%}
         {% for week_day_schedles in month_day_schedules %}
             <tr>
-
                 {% for day, schedules in week_day_schedles.items %}
-                    {%test schedules%}
-                    {%if schedules|length < 2 %}
+                    {% if schedules|test  %} 
                     <td class="table-danger">
                         {% else %}
                     </td>
             <td>
-                        {%endif%}    
- 
+                        {%endif%} 
                 <div>
                     {% if month_current.month != day.month %}
                         {{ day | date:"m/d" }}
