@@ -8,6 +8,8 @@
         {% for day in week_days %}
             {% if now == day %}
                 <td class="table-success">
+            {% elif day == selected_date%}
+                <td class="table-warning">
                     {% else %}
                 <td>
             {% endif %}

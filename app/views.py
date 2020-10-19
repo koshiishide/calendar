@@ -67,6 +67,16 @@ class MyCalendar(mixins.MonthCalendarMixin, mixins.WeekWithScheduleMixin, generi
         month_calendar_context = self.get_month_calendar()
         context.update(week_calendar_context)
         context.update(month_calendar_context)
+
+        # 選択した日付
+        month = self.kwargs.get('month')
+        year = self.kwargs.get('year')
+        day = self.kwargs.get('day')
+        if month and year and day:
+            date = datetime.date(year=int(year), month=int(month), day=int(day))
+        else:
+            date = datetime.date.today()
+        context['selected_date'] = date
         return context
 
     def form_valid(self, form):
@@ -106,7 +116,7 @@ class MonthWithFormsCalendar(mixins.MonthWithFormsMixin, generic.View):
 class ScheduleChange(generic.UpdateView):
     model = Schedule
     form_class = BS4ScheduleForm
-    success_url = '/'
+    success_url = '/month_with_schedule/'
 
 class ScheduleDelete(generic.DeleteView):
     model = Schedule

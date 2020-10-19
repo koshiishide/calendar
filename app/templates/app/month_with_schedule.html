@@ -1,24 +1,30 @@
 {% extends 'app/base.html' %}
 {% block content %}
-    <style>
-        table {
-            table-layout: fixed;
-        }
+<style>
+    table {
+        table-layout: fixed;
+    }
 
-        td > div {
-            height: 100px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
+    td > div {
+        height: 100px;
+        overflow: auto;
+        white-space: nowrap;
+        
+    }
+    p {
+        margin: 0;
+    }
+    p>a{
+        font-size: 15px;
+    }
 
-    </style>
+</style>
     <a href="{% url 'app:month_with_schedule' month_previous.year month_previous.month %}">前月</a>
     {{ month_current | date:"Y年m月" }}
     <a href="{% url 'app:month_with_schedule' month_next.year month_next.month %}">次月</a>
 
     <table class="table">
-        <h2>赤色　　＝　人数足りないアラート</h2>
-        <thead>
+        <thead class="thead-light">
         <tr>
             {% for w in week_names %}
                 <th>{{ w }}</th>
@@ -26,17 +32,18 @@
         </tr>
         </thead>
         <tbody>
+        {% load  test1%}
+        {%with count=1%}
         {% for week_day_schedles in month_day_schedules %}
             <tr>
-
                 {% for day, schedules in week_day_schedles.items %}
-                    {%if schedules|length < 2 %}
-                    <td class="table-danger">
-                        {% else %}
-                    </td>
-            <td>
-                        {%endif%}    
- 
+                    {% if day|test2 %}
+                        <td class="table-dark">
+                    {% elif schedules|test  %} 
+                        <td class="table-danger">
+                    {% else %}
+                        <td class>    
+                    {%endif%} 
                 <div>
                     {% if month_current.month != day.month %}
                         {{ day | date:"m/d" }}
@@ -45,16 +52,15 @@
                     {% endif %}
                     <br>
                      <!-- 内容 -->
-
                     {% for schedule in schedules %}
-                        <p><p><a href="{% url 'app:schedule_change' schedule.pk %}">{{ schedule.summary }}</a></p></p>
-                    {% endfor %}
-                
+                        <p class="sample"><a href="{% url 'app:schedule_change' schedule.pk %}">{{ schedule.summary }}</a></p>
+                    {% endfor %}            
                 </div>
                 </td>
                 {% endfor %}
             </tr>
         {% endfor %}
+        {%endwith%}
         </tbody>
     </table>
 {% endblock %}

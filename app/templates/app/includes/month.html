@@ -11,11 +11,14 @@
     </tr>
     </thead>
     <tbody>
+
     {% for week in month_days %}
         <tr>
             {% for day in week %}
                 {% if now == day %}
                     <td class="table-success">
+                {% elif day == selected_date%}
+                    <td class="table-warning">
                 {% else %}
                     <td>
                 {% endif %}
